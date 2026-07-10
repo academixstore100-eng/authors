@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Author Applications — Admin | AcademixStore</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand">Academix<span>Store</span> <span class="admin-tag">Admin</span></a>
+    <button class="btn btn-small btn-ghost" id="logoutBtn" hidden>Log out</button>
+  </div>
+</header>
+
+<main class="wrap admin-main">
+
+  <!-- ============ LOGIN ============ -->
+  <section class="login-panel" id="loginPanel">
+    <div class="login-card">
+      <p class="eyebrow">Admin access</p>
+      <h1 class="section-title">Sign in to review applications</h1>
+      <form id="loginForm" novalidate>
+        <div class="form-field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" autocomplete="username" required>
+        </div>
+        <div class="form-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" autocomplete="current-password" required>
+        </div>
+        <span class="field-error" id="loginError"></span>
+        <button type="submit" class="btn btn-primary btn-large" id="loginBtn">
+          <span class="btn-label">Sign in</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section class="dashboard" id="dashboard" hidden>
+
+    <div class="dash-header">
+      <div>
+        <p class="eyebrow">Author applications</p>
+        <h1 class="section-title">Review submissions</h1>
+      </div>
+      <div class="dash-stats" id="dashStats"></div>
+    </div>
+
+    <div class="dash-controls">
+      <input type="search" id="searchInput" placeholder="Search by name, email, subject…">
+      <select id="statusFilter">
+        <option value="">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="reviewing">Reviewing</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
+      </select>
+      <button class="btn btn-small btn-ghost" id="refreshBtn">↻ Refresh</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="apps-table">
+        <thead>
+          <tr>
+            <th>Submitted</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Location</th>
+            <th>Subject</th>
+            <th>Experience</th>
+            <th>Links</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- rows injected by admin.js -->
+        </tbody>
+      </table>
+      <p class="empty-state" id="emptyState" hidden>No applications match your filters.</p>
+      <p class="loading-state" id="loadingState">Loading applications…</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- row detail modal -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal-card" id="modalCard"></div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
